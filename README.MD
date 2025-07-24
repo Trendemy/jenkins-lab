@@ -65,12 +65,13 @@ After building the AMI, use the following AWS CLI commands (update IDs as needed
 2. **Authorize Security Group Ingress:**
 	```sh
 	aws ec2 authorize-security-group-ingress \
-	   --group-id "sg-preview-1" \
-	   --ip-permissions \
-		'{"IpProtocol":"tcp","FromPort":22,"ToPort":22,"IpRanges":[{"CidrIp":"0.0.0.0/0"}]}' \
-		'{"IpProtocol":"tcp","FromPort":443,"ToPort":443,"IpRanges":[{"CidrIp":"0.0.0.0/0"}]}' \
-		'{"IpProtocol":"tcp","FromPort":80,"ToPort":80,"IpRanges":[{"CidrIp":"0.0.0.0/0"}]}' \
-		'{"IpProtocol":"tcp","FromPort":8080,"ToPort":8080,"IpRanges":[{"CidrIp":"0.0.0.0/0"}]}'
+		--group-id "sg-xxxxxxxxxxxx" \
+		--ip-permissions '[
+			{"IpProtocol":"tcp","FromPort":22,"ToPort":22,"IpRanges":[{"CidrIp":"0.0.0.0/0"}]},
+			{"IpProtocol":"tcp","FromPort":443,"ToPort":443,"IpRanges":[{"CidrIp":"0.0.0.0/0"}]},
+			{"IpProtocol":"tcp","FromPort":80,"ToPort":80,"IpRanges":[{"CidrIp":"0.0.0.0/0"}]},
+			{"IpProtocol":"tcp","FromPort":8080,"ToPort":8080,"IpRanges":[{"CidrIp":"0.0.0.0/0"}]}
+		]'
 	```
 
 3. **Run EC2 Instance:**
@@ -79,7 +80,7 @@ After building the AMI, use the following AWS CLI commands (update IDs as needed
 	   --image-id "<your-ami-id>" \
 	   --instance-type "t2.micro" \
 	   --key-name "<your-private-key>" \
-	   --network-interfaces '{"AssociatePublicIpAddress":true,"DeviceIndex":0,"Groups":["sg-preview-1"]}' \
+	   --network-interfaces '{"AssociatePublicIpAddress":true,"DeviceIndex":0,"Groups":["sg-xxxxxxxxxxxx"]}' \
 	   --credit-specification '{"CpuCredits":"standard"}' \
 	   --tag-specifications '{"ResourceType":"instance","Tags":[{"Key":"Name","Value":"jenkins-02"}]}' \
 	   --private-dns-name-options '{"HostnameType":"ip-name","EnableResourceNameDnsARecord":true,"EnableResourceNameDnsAAAARecord":false}' \
