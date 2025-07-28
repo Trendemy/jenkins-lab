@@ -28,6 +28,13 @@ source "amazon-ebs" "ubuntu_jenkins"{
     ami_name                    = "jenkins-ubuntu24-{{timestamp}}"
     ami_description             = "Ubuntu 24.04 with Jenkins"
     associate_public_ip_address = true
+
+    ssh_keypair_name = "my-key" 
+    ssh_private_key_file = "../secrets/my-key.pem"
+
+     tags = {
+    "Name" = "jenkins-packer-instance"   # đặt tên EC2
+  }
 }
 
 build {
