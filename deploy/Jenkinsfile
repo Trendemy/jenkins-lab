@@ -4,7 +4,7 @@ pipeline {
     environment {
         FRONTEND_DIR = 'frontend'
         BACKEND_DIR = 'backend'
-        FRONTEND_DOCKER_IMAGE = 'yourdockerhubuser/pizza-frontend:latest'
+        FRONTEND_DOCKER_IMAGE = 'hdnguyen3101/pizza-frontend:latest'
         EC2_FRONTEND = 'ec2-user@<FRONTEND_EC2_IP>'
         EC2_BACKEND = 'ec2-user@<BACKEND_EC2_IP>'
     }
