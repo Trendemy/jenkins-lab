@@ -5,8 +5,8 @@ pipeline {
         FRONTEND_DIR = 'frontend'
         BACKEND_DIR = 'backend'
         FRONTEND_DOCKER_IMAGE = 'hdnguyen3101/pizza-frontend:latest'
-        EC2_FRONTEND = 'ec2-user@<FRONTEND_EC2_IP>'
-        EC2_BACKEND = 'ec2-user@<BACKEND_EC2_IP>'
+        EC2_FRONTEND = 'ubuntu@52.74.221.28'
+        EC2_BACKEND = 'ubuntu@52.74.221.28'
     }
 
     stages {
@@ -37,7 +37,7 @@ pipeline {
 
         stage('Deploy Frontend to EC2') {
             steps {
-                sshagent(credentials: ['ec2-ssh-key']) {
+                sshagent(credentials: ['private-key']) {
                     sh '''
                         ssh -o StrictHostKeyChecking=no $EC2_FRONTEND "
                             docker pull $FRONTEND_DOCKER_IMAGE &&
@@ -59,12 +59,12 @@ pipeline {
 
         stage('Deploy Backend to EC2') {
             steps {
-                sshagent(credentials: ['ec2-ssh-key']) {
+                sshagent(credentials: ['private-key']) {
                     sh '''
-                        scp $BACKEND_DIR/build/libs/*.jar $EC2_BACKEND:/home/ec2-user/backend.jar
+                        scp $BACKEND_DIR/build/libs/*.jar $EC2_BACKEND:/home/ubuntu/backend.jar
                         ssh -o StrictHostKeyChecking=no $EC2_BACKEND "
                             pkill -f 'java -jar' || true
-                            nohup java -jar /home/ec2-user/backend.jar > backend.log 2>&1 &
+                            nohup java -jar /home/ubuntu/backend.jar > backend.log 2>&1 &
                         "
                     '''
                 }
