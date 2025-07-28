@@ -63,6 +63,7 @@ pipeline {
                     sh '''
                         scp $BACKEND_DIR/build/libs/backend-1.0.0.jar $EC2_BACKEND:/home/ubuntu/backend.jar
                         ssh -o StrictHostKeyChecking=no $EC2_BACKEND "
+                            set -x
                             pkill -f 'java -jar' || true
                             nohup java -jar /home/ubuntu/backend.jar > backend.log 2>&1 &
                         "
