@@ -66,6 +66,9 @@ pipeline {
                             set -x
                             pkill -f 'java -jar' || true
                             nohup java -jar /home/ubuntu/backend.jar > backend.log 2>&1 &
+                            sleep 3
+                            ps -ef | grep java | grep -v grep
+                            tail -n 10 backend.log
                         "
                     '''
                 }
