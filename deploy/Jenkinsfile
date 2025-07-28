@@ -10,11 +10,11 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/your-org/pizza-reservation-demo.git'
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         git url: 'https://github.com/your-org/pizza-reservation-demo.git'
+        //     }
+        // }
 
         stage('Build Frontend Docker Image') {
             steps {
