@@ -72,7 +72,10 @@
       e.preventDefault();
       const form = e.target;
       const data = {
-        location: form.city.value + ' - ' + form.branch.value
+        location: form.city.value + ' - ' + form.branch.value,
+        people: form.people.value,
+        date: form.date.value,
+        time: form.time.value
       };
 
       const res = await fetch('/backend/reserve', {
