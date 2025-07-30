@@ -78,7 +78,7 @@
         time: form.time.value
       };
 
-      const res = await fetch('/backend/reserve', {
+      const res = await fetch('http://localhost:8081/api/reserve', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
