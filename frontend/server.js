@@ -7,7 +7,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.use('/backend', createProxyMiddleware({
-  target: 'http://localhost:8081/api',
+  target: 'http://host.docker.internal:8081/api',
   pathRewrite: { '^/backend': '' },
   changeOrigin: true,
 }));
