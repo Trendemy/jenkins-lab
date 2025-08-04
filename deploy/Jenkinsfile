@@ -4,9 +4,9 @@ pipeline {
     environment {
         FRONTEND_DIR = 'frontend'
         BACKEND_DIR = 'backend'
-        FRONTEND_DOCKER_IMAGE = 'hdnguyen3101/pizza-frontend:latest'
-        EC2_FRONTEND = 'ubuntu@52.74.221.28'
-        EC2_BACKEND = 'ubuntu@52.74.221.28'
+        FRONTEND_DOCKER_IMAGE = 'chuzynyan/pizza-frontend-chuzz:latest'
+        EC2_FRONTEND = 'ubuntu@52.221.249.159'
+        EC2_BACKEND = 'ubuntu@52.221.249.159'
     }
 
     stages {
